@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sidianzhong.sdz.mapper.ShopUserMapper">
+    <resultMap id="BaseResultMap" type="com.sidianzhong.sdz.model.ShopUser">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="portrait" jdbcType="VARCHAR" property="portrait"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="wechat" jdbcType="VARCHAR" property="wechat"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, name, password, phone, portrait, status, wechat, create_time, last_update_time
+  </sql>
+    <select id="selectByExample" parameterType="com.sidianzhong.sdz.model.ShopUserExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from shop_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="limit != null">
+            <if test="offset != null">
+                limit ${offset}, ${limit}
+            </if>
+            <if test="offset == null">
+                limit ${limit}
+            </if>
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from shop_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shop_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.sidianzhong.sdz.model.ShopUserExample">
+        delete from shop_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.sidianzhong.sdz.model.ShopUser">
+    insert into shop_user (id, name, password, 
+      phone, portrait, status, 
+      wechat, create_time, last_update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{portrait,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{wechat,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.sidianzhong.sdz.model.ShopUser">
+        insert into shop_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="portrait != null">
+                portrait,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="wechat != null">
+                wechat,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="portrait != null">
+                #{portrait,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="wechat != null">
+                #{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateTime != null">
+                #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.sidianzhong.sdz.model.ShopUserExample" resultType="java.lang.Long">
+        select count(*) from shop_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update shop_user
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.name != null">
+                name = #{record.name,jdbcType=VARCHAR},
+            </if>
+            <if test="record.password != null">
+                password = #{record.password,jdbcType=VARCHAR},
+            </if>
+            <if test="record.phone != null">
+                phone = #{record.phone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.portrait != null">
+                portrait = #{record.portrait,jdbcType=VARCHAR},
+            </if>
+            <if test="record.status != null">
+                status = #{record.status,jdbcType=INTEGER},
+            </if>
+            <if test="record.wechat != null">
+                wechat = #{record.wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.lastUpdateTime != null">
+                last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update shop_user
+        set id = #{record.id,jdbcType=INTEGER},
+        name = #{record.name,jdbcType=VARCHAR},
+        password = #{record.password,jdbcType=VARCHAR},
+        phone = #{record.phone,jdbcType=VARCHAR},
+        portrait = #{record.portrait,jdbcType=VARCHAR},
+        status = #{record.status,jdbcType=INTEGER},
+        wechat = #{record.wechat,jdbcType=VARCHAR},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sidianzhong.sdz.model.ShopUser">
+        update shop_user
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="portrait != null">
+                portrait = #{portrait,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="wechat != null">
+                wechat = #{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sidianzhong.sdz.model.ShopUser">
+    update shop_user
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      portrait = #{portrait,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectUserByPhone" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from shop_user
+        where phone = #{phone,jdbcType=VARCHAR}
+    </select>
+
+
+    <select id="selectUserByWeChat" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from shop_user
+        where weChat = #{wechat,jdbcType=VARCHAR}
+    </select>
+
+</mapper>
