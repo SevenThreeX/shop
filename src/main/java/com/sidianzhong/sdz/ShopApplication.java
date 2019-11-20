@@ -14,9 +14,9 @@ public class ShopApplication extends SpringBootServletInitializer {
         SpringApplication.run(ShopApplication.class, args);
     }
 
-//    @Override
-//    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-//        return builder.sources(ShopApplication.class);
-//    }
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(ShopApplication.class);
+    }
 
 }

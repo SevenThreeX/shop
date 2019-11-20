@@ -222,7 +222,6 @@ public class CommodityController {
 
     }
 
-
     @ApiOperation(value = "获取商品列表")
     @RequestMapping(value = "/getCommodityList",
             method = {RequestMethod.POST},
@@ -313,7 +312,7 @@ public class CommodityController {
         if (postByCommodityId.size() != 0) {
             CommodityPost commodityPost = postByCommodityId.get(0);
             String post = commodityPost.getPost();
-            jsonObject1.put("邮费", post);
+            jsonObject1.put("post", post);
             postPrice = commodityPost.getPrice();
         }
         //获取商品价值详情

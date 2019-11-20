@@ -25,7 +25,7 @@ public enum ResultStatus {
     USER_IS_FROZEN_ERROR(100005, "用户被冻结"),
     PHONE_BIND_ERROR(100006, "该手机号已被绑定"),
     WECHAT_BINF_ERROR(100006, "该微信绑定过手机号"),
-    NOT_PERMISSION(100007, "没有操作权限"),
+    NOT_PERMISSION(100007, "您不是商家账号，没有操作权限"),
 
     //支付
     NO_ALIPAY_WITHDRAW_HAS_BEEN_OPENED_YET(1000008, "暂未开通支付宝提款"),

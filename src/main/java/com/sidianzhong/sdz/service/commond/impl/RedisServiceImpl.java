@@ -174,7 +174,7 @@ public class RedisServiceImpl implements RedisService {
         for (UserRole userRole : userByUserId) {
             Integer roleId = userRole.getRoleId();
             //判断是否是有权限操作后台
-            if (roleId != 2) {
+            if (roleId != 4) {
                 throw new PermissionException("无权限");
             }
         }
