@@ -23,7 +23,7 @@ public class MD5Utils {
     /**
      * MD5加密
      */
-    public static String encryptMD5(String securityStr) {
+    private static String encryptMD5(String securityStr) {
         byte[] data = securityStr.getBytes();
         MessageDigest md5 = null;
         try {

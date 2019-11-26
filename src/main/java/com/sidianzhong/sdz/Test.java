@@ -1,10 +1,10 @@
 package com.sidianzhong.sdz;
 
 import com.sidianzhong.sdz.pay.wxPay.HttpClientUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class Test {
 
@@ -61,6 +61,7 @@ public class Test {
             System.out.println(e.getMessage());
         }
     }
+
 }
 
 
